@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 00:46:35 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/21 02:00:01 by shachan          ###   ########.fr       */
+/*   Updated: 2024/05/25 16:08:27 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,26 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-
-int main(void)
+/*
+#include <stdio.h>
+#include <ctype.h>
+int	main(void)
 {
-	int i = ft_isdigit('5');
-	int j = ft_isdigit('c');
-	printf("%d\n", i);
-	printf("%d\n", j);
-}
+	char	c;
+
+	c = '1';
+	printf("isdigit: %d\n", isdigit(c));
+	printf("ft_isdigit: %d\n", ft_isdigit(c));
+
+	c = 'A';
+	printf("isdigit: %d\n", isdigit(c));
+	printf("ft_isdigit: %d\n", ft_isdigit(c));
+
+	c = ' ';
+	printf("isdigit: %d\n", isdigit(c));
+	printf("ft_isdigit: %d\n", ft_isdigit(c));
+
+	c = '!';
+	printf("isdigit: %d\n", isdigit(c));
+	printf("ft_isdigit: %d\n", ft_isdigit(c));
+}*/
