@@ -1,1 +1,17 @@
-char *ft_substr(char const *s, unsigned int start, size_t len);
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/30 01:11:54 by shachan           #+#    #+#             */
+/*   Updated: 2024/05/30 01:12:19 by shachan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stddef.h>
+char *ft_substr(char const *s, unsigned int start, size_t len)
+{
+    
+}
