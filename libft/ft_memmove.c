@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 01:09:02 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/06 01:18:36 by shachan          ###   ########.fr       */
+/*   Created: 2024/06/05 00:29:56 by shachan           #+#    #+#             */
+/*   Updated: 2024/06/05 01:36:31 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-void *ft_memcpy(void *dest, const void *src, size_t n)
+void *ft_memmove(void *dst, const void *src, size_t n)
 {
-    size_t  i;
+    size_t  i; 
 
     i = 0;
-    if (dest == NULL || src == NULL)
-    {
+    if (dst == NULL || src == NULL)
         return (NULL);
-    }
-    while (i < n)
+    if (dst > src)
     {
-        ((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-        i++;
+        while (n > 0)
+        {
+           ((unsigned char *)dst)[n-1] = ((unsigned char *)src)[n-1];
+            n--;  
+        }
     }
-    return (dest);
+    else
+    {
+        while (i < n)
+        {
+            ((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+            i++;
+        }
+    }
+    return (dst);
 }
