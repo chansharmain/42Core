@@ -18,9 +18,10 @@ int	ft_isascii(int c)
 		return (0);
 }
 /*
-#include <stdio.h>
 #include <ctype.h>
-int	main()
+#include <stdio.h>
+
+int	main(void)
 {
 	char	c;
 
@@ -42,5 +43,5 @@ int	main()
 
 	c = 128;
 	printf("isascii: %d\n", isascii(c));
-	printf("ft_isascii: %d\n", ft_isascii(c));	
+	printf("ft_isascii: %d\n", ft_isascii(c));
 }*/

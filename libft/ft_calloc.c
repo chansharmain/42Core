@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
-void *ft_calloc(size_t nitems, size_t size)
+
+void	*ft_calloc(size_t nitems, size_t size)
 {
-    void    *ptr;
-    
-    ptr = malloc(nitems * size);
-    if (ptr == NULL)
-        return (NULL);
-    else
-        ft_bzero(ptr, nitems * size);
-    return (ptr);
+	void *ptr;
+
+	ptr = malloc(nitems * size);
+	if (ptr == NULL)
+		return (NULL);
+	else
+		ft_bzero(ptr, nitems * size);
+	return (ptr);
 }

@@ -10,44 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int  ft_numlen(int n)
+static int	ft_numlen(int n)
 {
-    int len;
+	int	len;
 
-    len = 0;
-    if (n <= 0)
-        len++;
-    if (n != 0)
-    {
-        len++;
-        n = n / 10;
-    }
-    return (len);    
+	len = 0;
+	if (n <= 0)
+		len++;
+	if (n != 0)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
 }
 
-
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    char    *output;
-    int len;
+	char	*output;
+	int		len;
 
-    len = ft_numlen(n);
-    output = malloc((len + 1) * sizeof(char));
-    if (output == NULL)
-        return (NULL);
-    output[len] = '\0';
-    if (n == 0)
-        output[0] = '0';
-    if (n < 0)
-    {
-        output[0] = '-';
-        n = n * -1;
-    }
-    while (len > 0)
-    {
-        output[len-1] = (n % 10) + '0';
-        n = n / 10;
-        len--;
-    }
-    return (output);
+	len = ft_numlen(n);
+	output = malloc((len + 1) * sizeof(char));
+	if (output == NULL)
+		return (NULL);
+	output[len] = '\0';
+	if (n == 0)
+		output[0] = '0';
+	if (n < 0)
+	{
+		output[0] = '-';
+		n = n * -1;
+	}
+	while (len > 0)
+	{
+		output[len - 1] = (n % 10) + '0';
+		n = n / 10;
+		len--;
+	}
+	return (output);
 }

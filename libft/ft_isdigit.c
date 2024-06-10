@@ -20,8 +20,9 @@ int	ft_isdigit(int c)
 		return (0);
 }
 /*
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
+
 int	main(void)
 {
 	char	c;

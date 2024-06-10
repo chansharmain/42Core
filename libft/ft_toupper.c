@@ -18,11 +18,12 @@ int	ft_toupper(int c)
 		return (c);
 }
 
-#include <stdio.h>
 #include <ctype.h>
-int	main()
+#include <stdio.h>
+
+int	main(void)
 {
-	char	c;
+	char c;
 
 	c = 'A';
 	printf("toupper: %c\n", toupper(c));

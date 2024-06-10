@@ -23,7 +23,8 @@ size_t	ft_strlen(const char *s)
 /*
 #include <stdio.h>
 #include <string.h>
-int	main()
+
+int	main(void)
 {
 	char *s = "hello";
 	printf("strlen: %ld\n", strlen(s));
@@ -31,5 +32,5 @@ int	main()
 
 	char *c = "world ";
 	printf("strlen: %ld\n", strlen(c));
-	printf("ft_strlen: %ld\n", ft_strlen(c));	
+	printf("ft_strlen: %ld\n", ft_strlen(c));
 }*/
