@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 01:11:54 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/10 20:54:35 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 00:01:13 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-/*
+
 #include <stdio.h>
 #include <string.h>
 
@@ -66,4 +66,4 @@ int	main(void)
 
 	printf("expected subst: NULL\n");
 	printf("substring: %s\n", ft_substr(s, -5, 1));
-}*/
+}
