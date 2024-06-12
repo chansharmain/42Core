@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:51:58 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/25 16:52:33 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:04:08 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
+
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;

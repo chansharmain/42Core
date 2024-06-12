@@ -6,11 +6,11 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 00:29:56 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/10 20:56:49 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:01:43 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {

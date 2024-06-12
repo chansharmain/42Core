@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 01:33:14 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/10 02:26:13 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 23:57:29 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int	ft_numlen(int n)
 {
@@ -17,14 +19,16 @@ static int	ft_numlen(int n)
 	len = 0;
 	if (n <= 0)
 		len++;
-	if (n != 0)
+	while (n != 0)
 	{
 		len++;
 		n = n / 10;
 	}
 	return (len);
 }
-
+//account for INT_MIN
+//if number is negative your len should compare to 1
+//so the negative sign is not overwritten
 char	*ft_itoa(int n)
 {
 	char	*output;

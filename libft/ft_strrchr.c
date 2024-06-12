@@ -6,21 +6,11 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:19:26 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/27 21:41:01 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/13 00:05:03 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-// to remove ft_strlen function after writing makefile and lib.h
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {
@@ -29,16 +19,17 @@ char	*ft_strrchr(const char *str, int c)
 	len = ft_strlen(str);
 	while (len > 0)
 	{
-		len--;
 		if (str[len] == (unsigned char)c)
 		{
 			return ((char *)(str + len));
 		}
+		len--;
 	}
 	if (str[len] == (unsigned char)c)
 		return ((char *)(str + len));
 	return (NULL);
 }
+
 /*
 #include <stdio.h>
 #include <string.h>

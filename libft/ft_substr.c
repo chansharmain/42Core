@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 01:11:54 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/12 00:01:13 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:05:32 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -32,7 +21,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (s == NULL)
 		return (NULL);
 	if (start >= ft_strlen(s))
-		return (NULL);
+	{
+		len = 0;
+		start = ft_strlen(s);
+	}
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	substr = malloc((len + 1) * sizeof(char));
@@ -46,7 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-
+/*
 #include <stdio.h>
 #include <string.h>
 
@@ -66,4 +58,4 @@ int	main(void)
 
 	printf("expected subst: NULL\n");
 	printf("substring: %s\n", ft_substr(s, -5, 1));
-}
+}*/

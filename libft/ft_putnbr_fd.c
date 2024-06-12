@@ -3,26 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 01:29:32 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/30 23:40:10 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/13 00:01:33 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-// remove above
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 	{
 		write(fd, "-2", 2);
-		n = 147483647;
+		n = 147483648;
 		ft_putnbr_fd(n, fd);
 	}
 	else if (n < 0)

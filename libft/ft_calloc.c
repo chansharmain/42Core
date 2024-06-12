@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 00:53:53 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/07 01:22:27 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:18:32 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t nitems, size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
 	ptr = malloc(nitems * size);
 	if (ptr == NULL)

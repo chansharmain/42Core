@@ -6,11 +6,12 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:49:39 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/27 19:49:01 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:04:00 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
+
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;

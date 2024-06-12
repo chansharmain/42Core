@@ -6,14 +6,11 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 01:22:07 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/10 20:56:09 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/12 20:01:53 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memset(void *str, int c, size_t n)
 {

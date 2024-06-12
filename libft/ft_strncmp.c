@@ -6,11 +6,12 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 21:51:46 by shachan           #+#    #+#             */
-/*   Updated: 2024/05/27 22:13:51 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/13 00:06:02 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
+//cast to unsigned char
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t	i;
