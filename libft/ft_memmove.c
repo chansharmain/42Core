@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 00:29:56 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/12 20:01:43 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/14 02:37:18 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 	size_t	i;
 
 	i = 0;
-	if (dst == NULL || src == NULL)
+	if (dst == NULL && src == NULL)
 		return (NULL);
 	if (dst > src)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 01:30:58 by shachan           #+#    #+#             */
-/*   Updated: 2024/06/13 00:08:21 by shachan          ###   ########.fr       */
+/*   Updated: 2024/06/14 00:19:41 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	i = 0;
 	while (s[i] != '\0')
 	{
-		f(i, s + i);
+		f(i, &s[i]);
 		i++;
 	}
 }
