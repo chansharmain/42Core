@@ -6,7 +6,7 @@
 #    By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 21:11:28 by shachan           #+#    #+#              #
-#    Updated: 2024/06/14 01:57:57 by shachan          ###   ########.fr        #
+#    Updated: 2024/06/16 17:04:26 by shachan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	$(AR) -r $@ $?
 
-#bonus: $(OBJECTS) $(BOBJECTS)
-#	$(AR) -r $(NAME) $?
+bonus: $(OBJECTS) $(BOBJECTS)
+	$(AR) -r $(NAME) $?
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
