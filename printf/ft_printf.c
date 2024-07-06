@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 01:17:34 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/05 02:04:00 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/06 16:36:11 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ static int	ft_format_specifier(char fs, va_list arg_ptr)
 	else if (fs == 'p')
 		count += ft_putpointer(va_arg(arg_ptr, unsigned long long));
 	else if ((fs == 'd') || (fs == 'i'))
-		count += ft_putnbr(va_arg(arg_ptr, int));
+		count += ft_putnbr_base(va_arg(arg_ptr, int), "0123456789");
 	else if (fs == 'u')
 		count += ft_putunsigned(va_arg(arg_ptr, unsigned int));
-	else if ((fs == 'x') || (fs == 'X'))
-		count += ft_puthex(va_arg(arg_ptr, char c));
+	else if (fs == 'x')
+		count += ft_putnbr_base(va_arg(arg_ptr, long unsigned int), "0123456789abcdef");
+	else if (fs == 'X')
+		count += ft_putnbr_base(va_arg(arg_ptr, long unsigned int), "0123456789ABCDEF");		
 	else if (fs == '%')
 		count += ft_putchar('%');
 	else
 		count += ft_putchar(fs);
+	return(count);
 }
 
 int	ft_printf(const char *formatted_string, ...)
