@@ -6,7 +6,7 @@
 #    By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 21:11:28 by shachan           #+#    #+#              #
-#    Updated: 2024/06/16 17:04:26 by shachan          ###   ########.fr        #
+#    Updated: 2024/06/18 21:56:14 by shachan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,16 +28,17 @@ BSOURCES = \
 OBJECTS = $(SOURCES:.c=.o)
 BOBJECTS = $(BSOURCES:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(AR) -r $@ $?
+	$(AR) $@ $?
 
 bonus: $(OBJECTS) $(BOBJECTS)
-	$(AR) -r $(NAME) $?
+	$(AR) $(NAME) $?
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
