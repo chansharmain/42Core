@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 01:17:34 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/08 23:02:51 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/08 23:23:31 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static int	ft_format_specifier(char fs, va_list arg_ptr)
 	else if (fs == 'u')
 		count += ft_putunsigned(va_arg(arg_ptr, unsigned int));
 	else if (fs == 'x')
-		count += ft_putnbr_base(va_arg(arg_ptr, long unsigned int),
+		count += ft_putnbr_base(va_arg(arg_ptr, unsigned int),
 				"0123456789abcdef");
 	else if (fs == 'X')
-		count += ft_putnbr_base(va_arg(arg_ptr, long unsigned int),
+		count += ft_putnbr_base(va_arg(arg_ptr, unsigned int),
 				"0123456789ABCDEF");
 	else if (fs == '%')
 		count += ft_putchar('%');
@@ -54,14 +54,14 @@ int	ft_printf(const char *formatted_string, ...)
 		if (formatted_string[i] == '%')
 		{
 			count += ft_format_specifier(formatted_string[++i], arg_ptr);
-			if (formatted_string[i + 1] != '\0')
-				i++;
+			// if (formatted_string[i + 1] != '\0')
+			// 	i++;
 		}
 		else
 		{
 			count += ft_putchar(formatted_string[i]);
-			i++;
 		}
+		i++;
 	}
 	va_end (arg_ptr);
 	return (count);
