@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 01:53:10 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/11 00:55:35 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/11 01:04:23 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ int	ft_putnbr_base(long long n, char *base)
 
 int	ft_putnbr_base2(unsigned long long n, char *base)
 {
-	int	baselen;
-	int	count;
-	// unsigned long long	baselen;
-	// unsigned long long	count;
+	// int	baselen;
+	// int	count;
+	unsigned long long	baselen;
+	unsigned long long	count;
 
 	baselen = 0;
 	while (base[baselen] != '\0')
