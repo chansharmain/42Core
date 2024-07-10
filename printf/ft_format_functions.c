@@ -6,13 +6,13 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 01:53:10 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/11 00:35:29 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/11 00:55:35 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
@@ -50,7 +50,7 @@ int	ft_putpointer(unsigned long long n)
 	{
 		write(1, "0x", 2);
 		count += 2;
-		count += ft_putnbr_base(n, "0123456789ABCDEF");
+		count += ft_putnbr_base2(n, "0123456789ABCDEF");
 	}
 	return (count);
 }
@@ -91,7 +91,7 @@ int	ft_putunsigned(unsigned int n)
 	return (count);
 }
 
-int	ft_putnbr_base(long n, char *base)
+int	ft_putnbr_base(long long n, char *base)
 {
 	int	baselen;
 	int	count;
@@ -107,6 +107,30 @@ int	ft_putnbr_base(long n, char *base)
 		count += ft_putchar('-');
 		n = -n;
 	}
+	if (n >= baselen)
+		count += ft_putnbr_base(n / baselen, base);
+	count += ft_putchar(base[n % baselen]);
+	return (count);
+}
+
+int	ft_putnbr_base2(unsigned long long n, char *base)
+{
+	int	baselen;
+	int	count;
+	// unsigned long long	baselen;
+	// unsigned long long	count;
+
+	baselen = 0;
+	while (base[baselen] != '\0')
+		baselen++;
+	if (baselen < 1)
+		return (0);
+	count = 0;
+	// if (n < 0)
+	// {
+	// 	count += ft_putchar('-');
+	// 	n = -n;
+	// }
 	if (n >= baselen)
 		count += ft_putnbr_base(n / baselen, base);
 	count += ft_putchar(base[n % baselen]);
