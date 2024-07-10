@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 01:17:34 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/08 23:23:31 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/10 02:28:26 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ int	ft_printf(const char *formatted_string, ...)
 	{
 		if (formatted_string[i] == '%')
 		{
-			count += ft_format_specifier(formatted_string[++i], arg_ptr);
-			// if (formatted_string[i + 1] != '\0')
-			// 	i++;
+			if (formatted_string[i + 1] != '\0')
+			{
+				count += ft_format_specifier(formatted_string[i + 1], arg_ptr);
+				i++;
+			}
 		}
 		else
-		{
 			count += ft_putchar(formatted_string[i]);
-		}
 		i++;
 	}
 	va_end (arg_ptr);
@@ -144,11 +144,13 @@ int	main(void)
 	printf("Chars printed: %i\n\n", count);
 	printf("======================================\n");
 
-	printf("9. Test case for other outputs\n");
-	ft_count = ft_printf("ft_printf: %a\n");
-	printf("Chars printed: %i\n", ft_count);
-	//count = printf("og_printf: %a");
-	//printf("Chars printed: %i\n\n", count);
+	ft_printf("9. Test case for other outputs\n");
+	ft_count = ft_printf("%\n");
+	ft_printf("Chars printed: %i\n", ft_count);
+	ft_count = ft_printf("%a\n");
+	ft_printf("Chars printed: %i\n", ft_count);
+	ft_count = ft_printf("%%%\n");
+	ft_printf("Chars printed: %i\n", ft_count);
 	printf("======================================\n");
 	
 }*/
