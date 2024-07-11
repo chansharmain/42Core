@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 01:53:10 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/11 01:04:23 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/12 00:25:21 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putstr(char *str)
 	int	count;
 
 	if (!str)
-		return(write(1, "(null)", 6));
+		return (write(1, "(null)", 6));
 	i = 0;
 	count = 0;
 	while (str[i] != '\0')
@@ -50,7 +50,7 @@ int	ft_putpointer(unsigned long long n)
 	{
 		write(1, "0x", 2);
 		count += 2;
-		count += ft_putnbr_base2(n, "0123456789ABCDEF");
+		count += ft_putnbr_base2(n, "0123456789abcdef");
 	}
 	return (count);
 }
@@ -113,26 +113,26 @@ int	ft_putnbr_base(long long n, char *base)
 	return (count);
 }
 
-int	ft_putnbr_base2(unsigned long long n, char *base)
-{
-	// int	baselen;
-	// int	count;
-	unsigned long long	baselen;
-	unsigned long long	count;
+// int	ft_putnbr_base2(unsigned long long n, char *base)
+// {
+// 	// int	baselen;
+// 	// int	count;
+// 	unsigned long long	baselen;
+// 	unsigned long long	count;
 
-	baselen = 0;
-	while (base[baselen] != '\0')
-		baselen++;
-	if (baselen < 1)
-		return (0);
-	count = 0;
-	// if (n < 0)
-	// {
-	// 	count += ft_putchar('-');
-	// 	n = -n;
-	// }
-	if (n >= baselen)
-		count += ft_putnbr_base(n / baselen, base);
-	count += ft_putchar(base[n % baselen]);
-	return (count);
-}
+// 	baselen = 0;
+// 	while (base[baselen] != '\0')
+// 		baselen++;
+// 	if (baselen < 1)
+// 		return (0);
+// 	count = 0;
+// 	// if (n < 0)
+// 	// {
+// 	// 	count += ft_putchar('-');
+// 	// 	n = -n;
+// 	// }
+// 	if (n >= baselen)
+// 		count += ft_putnbr_base(n / baselen, base);
+// 	count += ft_putchar(base[n % baselen]);
+// 	return (count);
+// }

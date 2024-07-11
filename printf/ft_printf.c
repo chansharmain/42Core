@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 01:17:34 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/11 01:04:03 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/12 00:26:31 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_printf(const char *formatted_string, ...)
 	va_end (arg_ptr);
 	return (count);
 }
-
+/*
 #include <limits.h>
 #include <stdio.h>
 
@@ -153,4 +153,4 @@ int	main(void)
 	ft_printf("Chars printed: %i\n", ft_count);
 	printf("======================================\n");
 	
-}
+}*/
