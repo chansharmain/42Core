@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 00:23:05 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/12 00:23:16 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/12 00:29:41 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_putnbr_base2(unsigned long long n, char *base)
 {
-	// int	baselen;
-	// int	count;
 	unsigned long long	baselen;
 	unsigned long long	count;
 

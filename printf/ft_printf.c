@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 01:17:34 by shachan           #+#    #+#             */
-/*   Updated: 2024/07/12 00:26:31 by shachan          ###   ########.fr       */
+/*   Updated: 2024/07/12 00:34:58 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,4 @@ int	main(void)
 	ft_count = ft_printf("%%%\n");
 	ft_printf("Chars printed: %i\n", ft_count);
 	printf("======================================\n");
-	
 }*/
