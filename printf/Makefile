@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+         #
+#    By: shachan <shachan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/27 01:17:38 by shachan           #+#    #+#              #
-#    Updated: 2024/07/12 00:34:00 by shachan          ###   ########.fr        #
+#    Updated: 2024/07/13 17:49:11 by shachan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SOURCES = ft_format_functions.c ft_printf.c ft_format_functions2.c\
+SOURCES = ft_printf.c ft_format_functions.c ft_format_functions2.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -22,16 +22,16 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(AR) -r $@ $?
+	ar rcs $(NAME) $(OBJECTS)
 
 $(OBJECTS): %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJECTS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:	clean
+	rm -rf $(NAME)
 
 re: fclean all
 
