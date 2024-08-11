@@ -1,10 +1,22 @@
-NAME = 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/01 00:21:42 by shachan           #+#    #+#              #
+#    Updated: 2024/08/11 18:15:44 by shachan          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SOURCES = \
+NAME = get_next_line.a 
+
+SOURCES = get_next_line.c get_next_line_utils.c 
 
 OBJECTS = $(SOURCES:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
