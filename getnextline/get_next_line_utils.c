@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:48 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/12 02:06:40 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/13 01:47:51 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,30 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	ft_bzero(void *str, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((unsigned char *)str)[i] = '\0';
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t nitems, size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(nitems * size);
+	if (ptr == NULL)
+		return (NULL);
+	else
+		ft_bzero(ptr, nitems * size);
+	return (ptr);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

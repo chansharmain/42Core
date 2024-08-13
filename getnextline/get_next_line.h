@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:38 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/12 02:07:09 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/13 01:48:02 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 char		*get_next_line(int fd);
 
 size_t		ft_strlen(const char *str);
+void		ft_bzero(void *str, size_t n);
+void		*ft_calloc(size_t nitems, size_t size);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *str, int c);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
