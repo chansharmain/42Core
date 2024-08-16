@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:30 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/14 00:47:16 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/16 19:03:21 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,46 @@ static char	*ft_read_and_store(int fd, char *store)
 	char	*buf;
 	char	*temp;
 
+    printf("store from previous: |%s|\n", store);
 	if (store == NULL)
-		store = ft_calloc(1, sizeof(char));
-	printf("1st store in ft_read_and store:%s\n", store);
+    	store = ft_calloc(1, sizeof(char));
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buf == NULL)
 		return (NULL);
-	// char_read = read(fd, buf, BUFFER_SIZE);
-	// printf("char read:%d\n", char_read);
-	printf("1st buf in ft_read_and_store:%s\n", buf);
+	char_read = 1;
 	while (char_read > 0)
 	{
 		char_read = read(fd, buf, BUFFER_SIZE);
-		printf("char read in ft_print_and_store:%d\n", char_read);
+        printf("char_read: %d\n", char_read);
+        if (char_read == -1)
+        {
+            free (buf);
+            free (store);
+            return (NULL);
+        }
 		buf[char_read] = '\0';
 		temp = ft_strjoin(store, buf);
-		printf("temp:%s\n", temp);
-		free (store);
-		store = temp;
-		printf("2nd store in ft_read_and_store:%s\n\n", store);
-		if (store == NULL)
-			return (NULL);
-		// if (ft_strchr(store, '\n'))
-		// 	break ;
+		free(store);
+		store = ft_strdup(temp);
+		free(temp);
+        printf("store when exiting read_and_store: |%s|\n", store);
+		// if (store == NULL)
+		// 	return (NULL);
+        if (store[0] == '\0')
+        {
+            free(store);
+			store = NULL;
+            return(NULL);
+        }
+		if (ft_strchr(store, '\n'))
+			break ;
 	}
-	if (char_read < 0)
-	{
-		free (store);
-		return (NULL);
-	}
+	free (buf);
+    // if (store[0] == '\0')
+    // {
+    //     free(store);
+    //     return(NULL);
+    // }
 	return (store);
 }
 
@@ -57,67 +68,111 @@ static char	*ft_find_next_line(char *store)
 {
 	char	*find_next_line;
 	char	*tmp;
-	int		i;
+	int		break_index;
 	int		store_len;
 
-	// printf("store: %s\n", store);
+	if (store == NULL)
+		return(NULL);
 	store_len = ft_strlen(store);
-	i = 0;
-	while ((store[i] != '\0') && (store[i] != '\n'))
-		i++;
-	find_next_line = malloc(sizeof(char) * (i + 2));
+	// tmp = NULL;
+    printf("store len in fnl: %d\n", store_len);
+	// printf("tmp from previous: |%s|\n", tmp);
+	// // ft_bzero(tmp, store_len);
+	// printf("initialised tmp: |%s|\n", tmp);
+
+
+	// break index is to find index of char \n or last char in string
+	break_index = 0;
+	while (store[break_index] != '\0')
+	{
+		
+		if (store[break_index] == '\n')
+		{
+			break_index++;
+			break;
+		}
+		break_index++;
+	}
+
+
+		
+	find_next_line = malloc(sizeof(char) * (break_index + 1)); // 1 for index to len, 1 for /0
 	if (find_next_line == NULL)
 		return (NULL);
-	if (store[i] == '\n')
+	find_next_line[break_index] = '\0';
+	
+	printf("breakindex:%i\n", break_index);
+	if (store[break_index - 1] == '\n') // to find if there is a \n
 	{
-		ft_strlcpy(find_next_line, store, i + 2);
-		// printf("1st store in ft_find_next_line:%s\n", store);
-		// printf("next line: %s", find_next_line);
-		tmp = ft_substr(store, i + 1, store_len - i - 1);
+		// extract next line :
+		ft_strlcpy(find_next_line, store, break_index + 1); // + 1 for index to len,
+        printf("1extracted line: |%s|\n", find_next_line);
+		
+		
+		// update store :
+		tmp = ft_substr(store, break_index, store_len - break_index);
 		free(store);
-		store = tmp;
+		store = ft_strdup(tmp);
+		// store[0] = '\0';
+		free(tmp);
+		tmp = NULL;
+		printf("1updated store: |%s|\n", store);
+		printf("in store mem: |%p|\n", store);
+
 	}
 	else
 	{
-		ft_strlcpy(find_next_line, store, i + 1);
-		store[0] = '\0';
+		ft_strlcpy(find_next_line, store, store_len);
+		free(store);
+		store = NULL;
+		printf("2extracted line: |%s|\n", find_next_line);
+		printf("2updated store: |%s|\n", store);
+
 	}
 	return (find_next_line);
 }
+
+// char	*get_next_line(int fd)
+// {
+// 	static char	*store;
+// 	char		*next_line;
+
+// 	if (fd < 0 || BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	store = ft_read_and_store(fd, store);
+// 	if (store == NULL)
+// 		return (NULL);
+// 	next_line = ft_find_next_line(store);
+// 	return (next_line);
+// }
 
 char	*get_next_line(int fd)
 {
 	static char	*store;
 	char		*next_line;
 
-	store = NULL;
+    printf("*****************************\n");
+    printf("---ENTERING GNL FUNCTION WITH BUFFERSIZE = %d---\n", BUFFER_SIZE);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+    printf(">>>>ENTERING ft_read_and_store\n");
 	store = ft_read_and_store(fd, store);
 	if (store == NULL)
 		return (NULL);
+    printf(">>>>ENTERING ft_find_next_line\n");
+
+
+	
 	next_line = ft_find_next_line(store);
 	if (next_line == NULL)
 		return (NULL);
+
+    // printf(">>>>EXIT GNL WITH LINE: |%s|\n", next_line);
+    // printf(">>>>EXIT GNL WITH STORE: |%s|\n", store);
+	printf(">>>>store mem: |%p|\n", store);
+	printf("*****************************\n");
 	return (next_line);
 }
-// #include <stdio.h>
-// int	main()
-// {
-// 	int		fd;
-// 	char	*line;
-
-// 	fd = open("test.txt", O_RDONLY);
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (line == -1)
-// 			break ;
-// 		printf("%s", line);
-// 		free (line);
-// 	}
-// 	return (0);
-// }
 
 int	main(void)
 {
@@ -126,13 +181,28 @@ int	main(void)
 
 	fd = open("test.txt", O_RDONLY);
 	s = get_next_line(fd);
-	printf("line 1: %s\n", s);
+	printf("line 1: |%s|\n", s);
 	free(s);
 
-	s = get_next_line(fd);
-	printf("line 2: %s\n", s);
-	free(s);
+	// s = get_next_line(fd);
+	// printf("line 2: |%s|\n", s);
+	// free(s);
 	
+    // s = get_next_line(fd);
+	// printf("line 3: |%s|\n", s);
+	// free(s);
+
+	// s = get_next_line(fd);
+	// printf("line 4: |%s|\n", s);
+	// free(s);
+    
+	// s = get_next_line(fd);
+	// printf("line 5: |%s|\n", s);
+
+	// s = get_next_line(fd);
+	// printf("line 6: |%s|\n", s);
+	
+	// free(s);
 	close(fd);
 	return(0);
 }

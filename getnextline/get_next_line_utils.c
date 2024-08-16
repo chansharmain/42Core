@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:48 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/13 01:47:51 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/15 02:45:33 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,4 +139,22 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0';
 	return (substr);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	dup = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (dup == NULL)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
