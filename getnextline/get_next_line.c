@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:30 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/19 02:40:41 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/20 02:24:14 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@ static char	*ft_read_and_store(int fd, char *store)
 	{
         //printf("char_read: %d\n", char_read);
 		buf[char_read] = '\0';
+		// printf("%s", buf);
 		if (store == NULL)
+		{
+			// printf("entered if loop\n");
 			store = ft_strdup(buf);
+		}
 		else
 		{
+			// printf("entered else\n");
 			temp = ft_strjoin(store, buf);
 			free(store);
 			store = ft_strdup(temp);
@@ -136,15 +141,13 @@ int	ft_find_break_index(char *store, char c)
 	return(break_index);
 }
 
-static char	*ft_extract_next_line(char *store)
+static char	*ft_extract_next_line(char *store, int break_index)
 {
 	char	*next_line;
-	int		break_index;
 
 	//printf("store_len in enl: %ld\n", ft_strlen(store));
 	if (store == NULL)
 		return (NULL);
-	break_index = ft_find_break_index(store, '\n');
 	if ((break_index == 0) && (store[0] != '\0') && (store[0] != '\n'))
 		break_index = ft_strlen(store); // no new line but not empty
 	//printf("break_index: %d\n", break_index);
@@ -163,14 +166,12 @@ static char	*ft_extract_next_line(char *store)
 	return (next_line);
 }
 
-static char	*ft_update_store(char *store)
+static char	*ft_update_store(char *store, int break_index)
 {
-	int	break_index;
 	char	*tmp;
 	int	store_len;
 
 	store_len = ft_strlen(store);
-	break_index = ft_find_break_index(store, '\n');
 	//printf("store_len: %d\n", store_len);
 	// while ((store[break_index] != '\0') && (store[break_index] != '\n'))
 	// 	break_index++;
@@ -206,6 +207,7 @@ char	*get_next_line(int fd)
 {
 	static char	*store;
 	char		*next_line;
+	int			break_index;
 
     //printf("*****************************\n");
     //printf("---ENTERING GNL FUNCTION WITH BUFFERSIZE = %d---\n", BUFFER_SIZE);
@@ -216,12 +218,12 @@ char	*get_next_line(int fd)
 	if (store == NULL)
 		return (NULL);
     //printf(">>>>ENTERING ft_extract_next_line\n");
-	
-	next_line = ft_extract_next_line(store);
+	break_index = ft_find_break_index(store, '\n');
+	next_line = ft_extract_next_line(store, break_index);
 	if (next_line == NULL)
 		return (NULL);
 	//printf(">>>>ENTERING update_store\n");	
-	store = ft_update_store(store);
+	store = ft_update_store(store, break_index);
 
     //printf(">>>>EXIT GNL WITH LINE: |%s|\n", next_line);
     //printf(">>>>EXIT GNL WITH STORE: |%s|\n", store);
@@ -230,36 +232,36 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-// int	main(void)
-// {
-// 	int fd;
-// 	char *s;
+int	main(void)
+{
+	int fd;
+	char *s;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	s = get_next_line(fd);
-// 	//printf("line 1: |%s|\n", s);
-// 	free(s);
+	fd = open("test.txt", O_RDONLY);
+	s = get_next_line(fd);
+	printf("line 1: |%s|\n", s);
+	free(s);
 
-// 	s = get_next_line(fd);
-// 	//printf("line 2: |%s|\n", s);
-// 	free(s);
+	s = get_next_line(fd);
+	printf("line 2: |%s|\n", s);
+	free(s);
 	
-//  	s = get_next_line(fd);
-// 	//printf("line 3: |%s|\n", s);
-// 	free(s);
+ 	s = get_next_line(fd);
+	printf("line 3: |%s|\n", s);
+	free(s);
 
-// 	s = get_next_line(fd);
-// 	// //printf("line 4: |%s|\n", s);
-// 	free(s);
+	s = get_next_line(fd);
+	printf("line 4: |%s|\n", s);
+	free(s);
     
-// // 	// s = get_next_line(fd);
-// // 	// //printf("line 5: |%s|\n", s);
-// // 	// free(s);
+	s = get_next_line(fd);
+	printf("line 5: |%s|\n", s);
+	free(s);
 
-// // 	// s = get_next_line(fd);
-// // 	// //printf("line 6: |%s|\n", s);
-// // 	// free(s);
+	// s = get_next_line(fd);
+	// //printf("line 6: |%s|\n", s);
+	// free(s);
 
-// 	close(fd);
-// 	return(0);
-// }
+	close(fd);
+	return(0);
+}
