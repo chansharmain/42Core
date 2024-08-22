@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 01:15:16 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/22 04:06:46 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/22 16:13:42 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,22 +117,22 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-void	ft_free_store(char **store)
-{
-	int	i;
+// void	ft_free_store(char **store)
+// {
+// 	int	i;
 
-	i = 0;
-	if (store != NULL)
-	{
-		while (i < NUM_FD)
-		{
-			if (store[i] != NULL)
-			{
-				free(store[i]);
-				store[i] = NULL;
-			}
-			i++;
-		}
-		free (store);
-	}
-}
+// 	i = 0;
+// 	if (store != NULL)
+// 	{
+// 		while (i < NUM_FD)
+// 		{
+// 			if (store[i] != NULL)
+// 			{
+// 				free(store[i]);
+// 				store[i] = NULL;
+// 			}
+// 			i++;
+// 		}
+// 		free (store);
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 00:11:08 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/22 04:01:25 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/22 16:13:47 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *str, int c);
 // size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		ft_free_store(char **store);
+// void		ft_free_store(char **store);
 
 #endif
