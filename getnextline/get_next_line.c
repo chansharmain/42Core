@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:30 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/24 18:24:46 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/25 02:05:03 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,21 @@ static char	*ft_read_and_store(int fd, char *store)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buf == NULL)
-	{
-		free(store);
-		return (NULL);
-	}
+		return (free(store), NULL);
 	char_read = read(fd, buf, BUFFER_SIZE);
 	while (char_read > 0)
 	{
 		buf[char_read] = '\0';
 		store = ft_add_to_store(store, buf);
 		if (store == NULL)
-		{
-			free(buf); //here
-			return (NULL); //here
-		}
+			return (free(buf), NULL);
 		if (ft_strchr(store, '\n'))
 			break ;
 		char_read = read(fd, buf, BUFFER_SIZE);
 	}
 	free (buf);
-	if (store == NULL)
-		return (NULL);
-	if ((char_read == -1) || (store[0] == '\0'))
-	{
-		free(store);
-		return (NULL);
-	}
+	if ((char_read == -1) || (store != NULL && store[0] == '\0'))
+		return (free(store), NULL);
 	return (store);
 }
 
@@ -79,20 +68,17 @@ static char	*ft_extract_next_line(char *store)
 {
 	char	*next_line;
 	int		break_index;
-	int		nl_present;
 
+	if (store == NULL)
+		return (NULL);
 	break_index = 0;
 	while ((store[break_index] != '\0') && (store[break_index] != '\n'))
 		break_index++;
-	if (store == NULL)
-		return (NULL);
 	if ((break_index == 0) && (store[0] != '\0') && (store[0] != '\n'))
 		break_index = ft_strlen(store);
-	nl_present = (store[break_index] == '\n');
-	next_line = malloc(sizeof(char) * (break_index + 1 + nl_present));
+	next_line = ft_substr(store, 0, break_index + (store[break_index] == '\n'));
 	if (next_line == NULL)
 		return (NULL);
-	ft_strlcpy(next_line, store, break_index + 2);
 	return (next_line);
 }
 

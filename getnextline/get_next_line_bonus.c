@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 03:04:10 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/24 18:30:02 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/25 02:05:29 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,21 @@ static char	*ft_read_and_store(int fd, char *store)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buf == NULL)
-	{
-		free(store);
-		return (NULL);
-	}
+		return (free(store), NULL);
 	char_read = read(fd, buf, BUFFER_SIZE);
 	while (char_read > 0)
 	{
 		buf[char_read] = '\0';
 		store = ft_add_to_store(store, buf);
 		if (store == NULL)
-		{
-			free(buf);
-			return(NULL);
-		}
+			return (free(buf), NULL);
 		if (ft_strchr(store, '\n'))
 			break ;
 		char_read = read(fd, buf, BUFFER_SIZE);
 	}
 	free (buf);
-	if (store == NULL)
-		return (NULL);
-	if ((char_read == -1) || (store[0] == '\0'))
-	{
-		free(store);
-		return (NULL);
-	}
+	if ((char_read == -1) || (store != NULL && store[0] == '\0'))
+		return (free(store), NULL);
 	return (store);
 }
 
@@ -129,6 +118,8 @@ char	*get_next_line(int fd)
 	next_line = ft_extract_next_line(store[fd]);
 	if (next_line == NULL)
 	{
+		free(store[fd]);
+		store[fd] = NULL;
 		return (NULL);
 	}
 	store[fd] = ft_update_store(store[fd]);

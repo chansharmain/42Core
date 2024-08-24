@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 01:15:16 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/22 16:13:42 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/25 01:04:26 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,57 @@ char	*ft_strchr(const char *str, int c)
 // 	return (srclen);
 // }
 
+// char	*ft_substr(char const *s, unsigned int start, size_t len)
+// {
+// 	char	*substr;
+// 	size_t	i;
+//     size_t  s_len;
+
+// 	i = 0;
+//     s_len = ft_strlen(s);
+// 	if (s == NULL)
+// 		return (NULL);
+// 	if (start >= s_len)
+// 	{
+// 		len = 0;
+// 		start = s_len;
+// 	}
+// 	if (len > s_len - start)
+// 		len = s_len - start;
+// 	substr = malloc((len + 1) * sizeof(char));
+// 	if (substr == NULL)
+// 		return (NULL);
+// 	while (((start + i) < s_len) && (i < len))
+// 	{
+// 		substr[i] = s[start + i];
+// 		i++;
+// 	}
+// 	substr[i] = '\0';
+// 	return (substr);
+// }
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
 	size_t	i;
+	size_t	j;
+	char	*str;
 
+	str = (char *)malloc(sizeof(*s) * (len + 1));
+	if (str == 0)
+		return (NULL);
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (start >= ft_strlen(s))
+	j = 0;
+	while (s[i])
 	{
-		len = 0;
-		start = ft_strlen(s);
-	}
-	if (len > ft_strlen(s) - start)
-		len = ft_strlen(s) - start;
-	substr = malloc((len + 1) * sizeof(char));
-	if (substr == NULL)
-		return (NULL);
-	while (((start + i) < ft_strlen(s)) && (i < len))
-	{
-		substr[i] = s[start + i];
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
 		i++;
 	}
-	substr[i] = '\0';
-	return (substr);
+	str[j] = 0;
+	return (str);
 }
 
 // void	ft_free_store(char **store)
