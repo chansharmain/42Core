@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:30 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/21 02:18:47 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:24:46 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@ static char	*ft_add_to_store(char *store, char *buf)
 	char	*temp;
 
 	if (store == NULL)
+	{
 		store = ft_strjoin("", buf);
+		if (store == NULL)
+			return (NULL);
+	}
 	else
 	{
 		temp = ft_strjoin(store, buf);
 		free(store);
+		if (temp == NULL)
+			return (NULL);
 		store = ft_strjoin("", temp);
 		free(temp);
+		if (store == NULL)
+			return (NULL);
 	}
 	return (store);
 }
@@ -38,12 +46,20 @@ static char	*ft_read_and_store(int fd, char *store)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buf == NULL)
+	{
+		free(store);
 		return (NULL);
+	}
 	char_read = read(fd, buf, BUFFER_SIZE);
 	while (char_read > 0)
 	{
 		buf[char_read] = '\0';
 		store = ft_add_to_store(store, buf);
+		if (store == NULL)
+		{
+			free(buf); //here
+			return (NULL); //here
+		}
 		if (ft_strchr(store, '\n'))
 			break ;
 		char_read = read(fd, buf, BUFFER_SIZE);
@@ -63,6 +79,7 @@ static char	*ft_extract_next_line(char *store)
 {
 	char	*next_line;
 	int		break_index;
+	int		nl_present;
 
 	break_index = 0;
 	while ((store[break_index] != '\0') && (store[break_index] != '\n'))
@@ -71,7 +88,8 @@ static char	*ft_extract_next_line(char *store)
 		return (NULL);
 	if ((break_index == 0) && (store[0] != '\0') && (store[0] != '\n'))
 		break_index = ft_strlen(store);
-	next_line = malloc(sizeof(char) * (break_index + 2));
+	nl_present = (store[break_index] == '\n');
+	next_line = malloc(sizeof(char) * (break_index + 1 + nl_present));
 	if (next_line == NULL)
 		return (NULL);
 	ft_strlcpy(next_line, store, break_index + 2);
@@ -95,6 +113,8 @@ static char	*ft_update_store(char *store)
 	}
 	tmp = ft_substr(store, break_index + 1, store_len - break_index);
 	free(store);
+	if (tmp == NULL)
+		return (NULL);
 	store = ft_strjoin("", tmp);
 	free(tmp);
 	tmp = NULL;
@@ -113,7 +133,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	next_line = ft_extract_next_line(store);
 	if (next_line == NULL)
+	{
+		free(store);
+		store = NULL;
 		return (NULL);
+	}
 	store = ft_update_store(store);
 	return (next_line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: shachan <shachan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 03:04:10 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/23 02:22:04 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/24 18:30:02 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@ static char	*ft_add_to_store(char *store, char *buf)
 	char	*temp;
 
 	if (store == NULL)
+	{
 		store = ft_strjoin("", buf);
+		if (store == NULL)
+			return (NULL);
+	}
 	else
 	{
 		temp = ft_strjoin(store, buf);
 		free(store);
+		if (temp == NULL)
+			return (NULL);
 		store = ft_strjoin("", temp);
 		free(temp);
+		if (store == NULL)
+			return (NULL);
 	}
 	return (store);
 }
@@ -38,12 +46,20 @@ static char	*ft_read_and_store(int fd, char *store)
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buf == NULL)
+	{
+		free(store);
 		return (NULL);
+	}
 	char_read = read(fd, buf, BUFFER_SIZE);
 	while (char_read > 0)
 	{
 		buf[char_read] = '\0';
 		store = ft_add_to_store(store, buf);
+		if (store == NULL)
+		{
+			free(buf);
+			return(NULL);
+		}
 		if (ft_strchr(store, '\n'))
 			break ;
 		char_read = read(fd, buf, BUFFER_SIZE);
@@ -92,6 +108,8 @@ static char	*ft_update_store(char *store)
 	}
 	tmp = ft_substr(store, break_index + 1, store_len - break_index);
 	free(store);
+	if (tmp == NULL)
+		return (NULL);
 	store = ft_strjoin("", tmp);
 	free(tmp);
 	tmp = NULL;
