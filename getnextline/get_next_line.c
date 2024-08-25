@@ -6,7 +6,7 @@
 /*   By: shachan <shachan@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 00:21:30 by shachan           #+#    #+#             */
-/*   Updated: 2024/08/25 02:35:13 by shachan          ###   ########.fr       */
+/*   Updated: 2024/08/25 16:27:33 by shachan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*ft_read_and_store(int fd, char *store)
 		store = ft_add_to_store(store, buf);
 		if (store == NULL)
 			return (free(buf), NULL);
-		if (ft_strchr(store, '\n'))
+		if (ft_strchr(buf, '\n'))
 			break ;
 		char_read = read(fd, buf, BUFFER_SIZE);
 	}
